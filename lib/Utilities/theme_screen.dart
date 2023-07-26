@@ -27,7 +27,7 @@ class ThemeScreen extends StatelessWidget {
           const SizedBox(height: 30),
           const Row(
             children: [
-              Text("My Custom Fonts", style: TextStyle(fontFamily: 'Schyler', fontSize: 44, color: Colors.red),)
+              Text("My Custom Font", style: TextStyle(fontFamily: 'Schyler', fontSize: 44, color: Colors.red),)
             ],
           )
         ],
