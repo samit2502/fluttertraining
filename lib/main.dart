@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertraining/Utilities/align_items.dart';
+import 'package:fluttertraining/Utilities/group_buttons.dart';
 import 'package:fluttertraining/Utilities/theme_screen.dart';
+import 'package:fluttertraining/flutter_login.dart';
+
+import 'login.dart';
 // import 'package:fluttertraining/landing_page.dart';
 // import 'package:fluttertraining/second_screen.dart';
 // import 'Utilities/list_screen.dart';
@@ -42,7 +46,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         primaryColor: Colors.cyanAccent,
         fontFamily: 'Times New Roman',
-        scaffoldBackgroundColor: Colors.white60,
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(backgroundColor: Colors.blue),
         textTheme: const TextTheme(
           displayLarge: TextStyle(fontSize: 62.0, fontWeight: FontWeight.bold, color: Colors.black),
@@ -59,17 +63,20 @@ class MyApp extends StatelessWidget {
       //   )
       // )
       // home: LandingPage()
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text("Navigation Bar"),
-            // backgroundColor: hexToColor("#545557"),
-        ),
+      home: const Scaffold(
+        // appBar: AppBar(
+        //   centerTitle: true,
+        //   title: const Text("Navigation Bar"),
+        //     // backgroundColor: hexToColor("#545557"),
+        // ),
         // body: const SecondScreen()
         // body: const LandingPage()
         // body: const ListScreen()
         // body: const AlignItems()
-        body: const ThemeScreen()
+        // body: const ThemeScreen()
+        // body: const Login()
+        body: FlutterLogin(),
+        // body: GroupedButtons()
       )
     );
   }
