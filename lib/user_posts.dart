@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:fluttertraining/models/user_post_model.dart';
-import 'package:fluttertraining/constants/constants.dart';
+import 'package:fluttertraining/services/user_posts_service.dart';
 
 class UserPosts extends StatefulWidget {
   const UserPosts({super.key});
@@ -16,30 +12,7 @@ class UserPosts extends StatefulWidget {
 
 class _UserPostsState extends State<UserPosts> {
 
-  @override
-  void initState() {
-    super.initState();
-    getUserPosts();
-  }
-
-  Future<List<Users>> getUserPosts() async {
-    final response = await http.get(Uri.parse(userPostsUrl));
-    var responseBody = json.decode(response.body);
-    print(response.body);
-
-    //Creating a list to store the response body
-    List<Users> users = [];
-    for(var singleUser in responseBody) {
-      Users user = Users(
-        id: singleUser["id"],
-        userId: singleUser["userId"],
-        title: singleUser["title"],
-        body: singleUser["body"]
-      );
-      users.add(user);
-    }
-    return users;
-  }
+  UserPostsService userPostsService = UserPostsService();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +21,7 @@ class _UserPostsState extends State<UserPosts> {
           body: Container(
             padding: const EdgeInsets.all(5.0),
             child: FutureBuilder(
-              future: getUserPosts(),
+              future: userPostsService.getUserPosts(),
               builder: (ctx, snapshot) {
                 if(snapshot.data == null) {
                   return const Center(
@@ -62,8 +35,8 @@ class _UserPostsState extends State<UserPosts> {
                         color: Colors.lightGreen,
                         elevation: 5,
                         child: ListTile(
-                          title: Text(snapshot.data![index].title),
-                          subtitle: Text(snapshot.data![index].body),
+                          title: Text(snapshot.data![index].title, style: const TextStyle(color: Colors.white),),
+                          subtitle: Text(snapshot.data![index].body, style: const TextStyle(color: Colors.black),),
                           contentPadding: const EdgeInsets.only(bottom: 20.0),
                         ),
                       )
