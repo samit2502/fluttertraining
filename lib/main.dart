@@ -3,6 +3,7 @@ import 'package:fluttertraining/Utilities/align_items.dart';
 import 'package:fluttertraining/Utilities/group_buttons.dart';
 import 'package:fluttertraining/Utilities/theme_screen.dart';
 import 'package:fluttertraining/flutter_login.dart';
+import 'package:fluttertraining/user_posts.dart';
 
 import 'login.dart';
 // import 'package:fluttertraining/landing_page.dart';
@@ -75,8 +76,9 @@ class MyApp extends StatelessWidget {
         // body: const AlignItems()
         // body: const ThemeScreen()
         // body: const Login()
-        body: FlutterLogin(),
+        // body: FlutterLogin(),
         // body: GroupedButtons()
+        body: UserPosts()
       )
     );
   }

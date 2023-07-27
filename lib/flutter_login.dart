@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:grouped_buttons_ns/grouped_buttons_ns.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,6 +19,9 @@ class LoginState extends State<FlutterLogin> {
   TextEditingController usernameTextFiled = TextEditingController();
   List<String> checkedValue = [];
   bool checkedOrNot = false;
+  AndroidOptions _androidOptions() => const AndroidOptions(
+    encryptedSharedPreferences: true,
+  );
 
   @override
   void initState(){
@@ -27,6 +31,11 @@ class LoginState extends State<FlutterLogin> {
 
   _loadSavedData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    FlutterSecureStorage secureStorage = const FlutterSecureStorage();
+    var usernameS = await secureStorage.read(key: 'usernameS', aOptions: _androidOptions()) ?? '';
+    var passwordS = await secureStorage.read(key: 'passwordS', aOptions: _androidOptions()) ?? '';
+    print("usernameS is $usernameS");
+    print("passwordS is $passwordS");
     usernameTextFiled.text = prefs.getString('username') ?? '';
     passwordTextField.text = prefs.getString('password') ?? '';
     setState(() {
@@ -36,7 +45,10 @@ class LoginState extends State<FlutterLogin> {
 
   _saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    FlutterSecureStorage secureStorage = const FlutterSecureStorage();
     if(checkedValue.isNotEmpty && (checkedValue.first.toLowerCase() == "Remember Me".toLowerCase())) {
+      await secureStorage.write(key: 'usernameS', value: usernameTextFiled.text, aOptions: _androidOptions());
+      await secureStorage.write(key: 'passwordS', value: passwordTextField.text, aOptions: _androidOptions());
       prefs.setString('username', usernameTextFiled.text);
       prefs.setString('password', passwordTextField.text);
       prefs.setStringList('checkedValue', checkedValue);
@@ -45,6 +57,7 @@ class LoginState extends State<FlutterLogin> {
       await prefs.remove("username");
       await prefs.remove("password");
       await prefs.remove("checkedValue");
+      await secureStorage.deleteAll();
     }
   }
 
