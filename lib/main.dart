@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
       //   )
       // )
       // home: LandingPage()
-      home: const Scaffold(
+      // home: const Scaffold(
         // appBar: AppBar(
         //   centerTitle: true,
         //   title: const Text("Navigation Bar"),
@@ -80,8 +80,9 @@ class MyApp extends StatelessWidget {
         // body: FlutterLogin(),
         // body: GroupedButtons()
         // body: UserPosts()
-        body: UsersPage(),
-      )
+        // body: UsersPage(),
+      // )
+      home: const FlutterLogin(),
     );
   }
 }

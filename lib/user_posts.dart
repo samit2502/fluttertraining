@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertraining/services/user_posts_service.dart';
 
 class UserPosts extends StatefulWidget {
-  const UserPosts({super.key});
+
+  const UserPosts({super.key, required this.userId});
+  final int userId;
 
   @override
   State<UserPosts> createState() {
@@ -13,6 +15,13 @@ class UserPosts extends StatefulWidget {
 class _UserPostsState extends State<UserPosts> {
 
   UserPostsService userPostsService = UserPostsService();
+  late int userId;
+
+  @override
+  void initState() {
+    super.initState();
+    userId = widget.userId;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +30,7 @@ class _UserPostsState extends State<UserPosts> {
           body: Container(
             padding: const EdgeInsets.all(5.0),
             child: FutureBuilder(
-              future: userPostsService.getUserPosts(),
+              future: userPostsService.getUserPosts(userId),
               builder: (ctx, snapshot) {
                 if(snapshot.data == null) {
                   return const Center(
@@ -35,8 +44,8 @@ class _UserPostsState extends State<UserPosts> {
                         color: Colors.lightGreen,
                         elevation: 5,
                         child: ListTile(
-                          title: Text(snapshot.data![index].title, style: const TextStyle(color: Colors.white),),
-                          subtitle: Text(snapshot.data![index].body, style: const TextStyle(color: Colors.black),),
+                          title: Text(snapshot.data![index].userId.toString(), style: const TextStyle(color: Colors.white),),
+                          subtitle: Text(snapshot.data![index].id.toString(), style: const TextStyle(color: Colors.black),),
                           contentPadding: const EdgeInsets.only(bottom: 20.0),
                         ),
                       )
@@ -44,6 +53,10 @@ class _UserPostsState extends State<UserPosts> {
                 }
               },
             ),
+          ),
+          bottomNavigationBar: ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Go Back"),
           ),
         )
     );

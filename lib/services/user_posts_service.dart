@@ -1,11 +1,11 @@
 import 'dart:convert';
+import 'package:fluttertraining/constants/constants.dart';
 import 'package:fluttertraining/models/user_post_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:fluttertraining/constants/constants.dart';
 
 class UserPostsService {
-  Future<List<UserPosts>> getUserPosts() async {
-    final response = await http.get(Uri.parse(getUserPostsUrl));
+  Future<List<UserPosts>> getUserPosts(int userId) async {
+    final response = await http.get(Uri.parse(getUserPostsUrl).replace(query: 'userId=$userId'));
     var responseBody = json.decode(response.body);
 
     //Creating a list to store the response body

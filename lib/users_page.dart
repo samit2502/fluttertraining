@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertraining/services/users_service.dart';
+import 'package:fluttertraining/user_posts.dart';
 
 class UsersPage extends StatefulWidget {
   const UsersPage({super.key});
@@ -35,6 +36,7 @@ class _UsersPage extends State<UsersPage> {
                         color: Colors.lightGreen,
                         elevation: 5,
                         child: ListTile(
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => UserPosts(userId: snapshot.data![index].id))),
                           title: Text(snapshot.data![index].name, style: const TextStyle(color: Colors.white),),
                           subtitle: Text(snapshot.data![index].address.city, style: const TextStyle(color: Colors.black),),
                           contentPadding: const EdgeInsets.only(bottom: 20.0),

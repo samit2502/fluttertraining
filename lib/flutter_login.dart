@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertraining/users_page.dart';
 import 'package:grouped_buttons_ns/grouped_buttons_ns.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -179,7 +180,8 @@ class LoginState extends State<FlutterLogin> {
           backgroundColor: Colors.cyanAccent,
           actions: [
             TextButton(onPressed: () =>
-                Navigator.of(context).pop(), child: const Text("Ok", style: TextStyle(color: Colors.black),)
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const UsersPage())),
+                child: const Text("Ok", style: TextStyle(color: Colors.black),)
             ),
             TextButton(onPressed: () =>
                 Navigator.of(context).pop(), child: const Text("Cancel", style: TextStyle(color: Colors.black),)
