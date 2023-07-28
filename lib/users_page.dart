@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertraining/landing_page.dart';
+import 'package:fluttertraining/second_screen.dart';
 import 'package:fluttertraining/services/users_service.dart';
 import 'package:fluttertraining/user_posts.dart';
 
@@ -47,7 +49,7 @@ class _UsersPage extends State<UsersPage> {
               },
             ),
           ),
-        )
+        ),
     );
   }
 }

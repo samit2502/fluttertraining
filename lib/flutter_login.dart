@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertraining/navigation_bar.dart';
+import 'package:fluttertraining/second_screen.dart';
+import 'package:fluttertraining/user_posts.dart';
 import 'package:fluttertraining/users_page.dart';
 import 'package:grouped_buttons_ns/grouped_buttons_ns.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,8 +38,6 @@ class LoginState extends State<FlutterLogin> {
     FlutterSecureStorage secureStorage = const FlutterSecureStorage();
     var usernameS = await secureStorage.read(key: 'usernameS', aOptions: _androidOptions()) ?? '';
     var passwordS = await secureStorage.read(key: 'passwordS', aOptions: _androidOptions()) ?? '';
-    print("usernameS is $usernameS");
-    print("passwordS is $passwordS");
     usernameTextFiled.text = prefs.getString('username') ?? '';
     passwordTextField.text = prefs.getString('password') ?? '';
     setState(() {
@@ -168,7 +169,7 @@ class LoginState extends State<FlutterLogin> {
               ],
             ),
           ],
-        )
+        ),
     );
   }
 
@@ -180,7 +181,7 @@ class LoginState extends State<FlutterLogin> {
           backgroundColor: Colors.cyanAccent,
           actions: [
             TextButton(onPressed: () =>
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const UsersPage())),
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const NavigationBarPage())),
                 child: const Text("Ok", style: TextStyle(color: Colors.black),)
             ),
             TextButton(onPressed: () =>

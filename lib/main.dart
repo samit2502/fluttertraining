@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertraining/Utilities/align_items.dart';
 import 'package:fluttertraining/Utilities/group_buttons.dart';
+import 'package:fluttertraining/Utilities/snack_bar.dart';
 import 'package:fluttertraining/Utilities/theme_screen.dart';
 import 'package:fluttertraining/flutter_login.dart';
+import 'package:fluttertraining/Utilities/tab_screen.dart';
 import 'package:fluttertraining/user_posts.dart';
 import 'package:fluttertraining/users_page.dart';
 
@@ -82,7 +84,9 @@ class MyApp extends StatelessWidget {
         // body: UserPosts()
         // body: UsersPage(),
       // )
-      home: const FlutterLogin(),
+      // home: const FlutterLogin(),
+      // home: const TabScreen(),
+      home: const SnackBarWid()
     );
   }
 }

@@ -3,8 +3,8 @@ import 'package:fluttertraining/services/user_posts_service.dart';
 
 class UserPosts extends StatefulWidget {
 
-  const UserPosts({super.key, required this.userId});
-  final int userId;
+  const UserPosts({super.key, this.userId = 0});
+  final int? userId;
 
   @override
   State<UserPosts> createState() {
@@ -15,12 +15,12 @@ class UserPosts extends StatefulWidget {
 class _UserPostsState extends State<UserPosts> {
 
   UserPostsService userPostsService = UserPostsService();
-  late int userId;
+  late int? userId;
 
   @override
   void initState() {
     super.initState();
-    userId = widget.userId;
+    userId = widget.userId!;
   }
 
   @override
@@ -45,7 +45,7 @@ class _UserPostsState extends State<UserPosts> {
                         elevation: 5,
                         child: ListTile(
                           title: Text(snapshot.data![index].userId.toString(), style: const TextStyle(color: Colors.white),),
-                          subtitle: Text(snapshot.data![index].id.toString(), style: const TextStyle(color: Colors.black),),
+                          subtitle: Text(snapshot.data![index].body, style: const TextStyle(color: Colors.black),),
                           contentPadding: const EdgeInsets.only(bottom: 20.0),
                         ),
                       )
@@ -53,10 +53,6 @@ class _UserPostsState extends State<UserPosts> {
                 }
               },
             ),
-          ),
-          bottomNavigationBar: ElevatedButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text("Go Back"),
           ),
         )
     );

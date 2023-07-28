@@ -4,8 +4,13 @@ import 'package:fluttertraining/models/user_post_model.dart';
 import 'package:http/http.dart' as http;
 
 class UserPostsService {
-  Future<List<UserPosts>> getUserPosts(int userId) async {
-    final response = await http.get(Uri.parse(getUserPostsUrl).replace(query: 'userId=$userId'));
+  Future<List<UserPosts>> getUserPosts(int? userId) async {
+    final http.Response response;
+    if(userId == 0) {
+      response = await http.get(Uri.parse(getUserPostsUrl));
+    } else {
+      response = await http.get(Uri.parse(getUserPostsUrl).replace(query: 'userId=$userId'));
+    }
     var responseBody = json.decode(response.body);
 
     //Creating a list to store the response body
