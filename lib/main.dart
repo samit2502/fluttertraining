@@ -5,6 +5,7 @@ import 'package:fluttertraining/Utilities/snack_bar.dart';
 import 'package:fluttertraining/Utilities/theme_screen.dart';
 import 'package:fluttertraining/flutter_login.dart';
 import 'package:fluttertraining/Utilities/tab_screen.dart';
+import 'package:fluttertraining/google_maps_api.dart';
 import 'package:fluttertraining/user_posts.dart';
 import 'package:fluttertraining/users_page.dart';
 
@@ -67,12 +68,12 @@ class MyApp extends StatelessWidget {
       //   )
       // )
       // home: LandingPage()
-      // home: const Scaffold(
-        // appBar: AppBar(
-        //   centerTitle: true,
-        //   title: const Text("Navigation Bar"),
-        //     // backgroundColor: hexToColor("#545557"),
-        // ),
+      // home: Scaffold(
+      //   appBar: AppBar(
+      //     centerTitle: true,
+      //     title: const Text("Navigation Bar"),
+      //       // backgroundColor: hexToColor("#545557"),
+      //   ),
         // body: const SecondScreen()
         // body: const LandingPage()
         // body: const ListScreen()
@@ -86,7 +87,10 @@ class MyApp extends StatelessWidget {
       // )
       // home: const FlutterLogin(),
       // home: const TabScreen(),
-      home: const SnackBarWid()
+      // home: const SnackBarWid()
+      // body: const GoogleMapsView(),
+      // )
+      home: const FlutterLogin(),
     );
   }
 }
